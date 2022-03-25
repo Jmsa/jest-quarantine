@@ -1,0 +1,37 @@
+{
+  "env": {
+    "es6": true,
+    "jasmine": true,
+    "commonjs": true,
+    "jest/globals": true
+  },
+  "extends": ["eslint:recommended", "plugin:jasmine/recommended", "prettier"],
+  "globals": {},
+  "parser": "babel-eslint",
+  "plugins": ["jasmine", "jest", "import"],
+  "rules": {
+    "import/extensions": 0,
+    "import/no-deprecated": 1,
+    "jasmine/no-spec-dupes": [1, "branch"],
+    "jasmine/no-suite-dupes": [1, "branch"],
+    "jasmine/prefer-toHaveBeenCalledWith": 0,
+    "key-spacing": 0,
+    "max-len": 0,
+    "new-cap": [1, { "capIsNew": false }],
+    "new-parens": 0,
+    "no-multi-spaces": 0,
+    "no-prototype-builtins": "off",
+    "no-return-assign": 0,
+    "no-shadow": 0,
+    "no-underscore-dangle": 2,
+    "no-unused-vars": ["error", { "args": "after-used" }],
+    "no-use-before-define": 0,
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ]
+  }
+}

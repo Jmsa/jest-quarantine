@@ -1,0 +1,12 @@
+.env
+# dependencies
+/node_modules
+
+# test output
+/coverage
+
+# editor files
+.idea
+
+yarn-error.log
+tmp/
