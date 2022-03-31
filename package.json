@@ -1,8 +1,8 @@
 {
-  "name": "jest-pseudo-quarantine",
+  "name": "jest-quarantine",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/ProductPlan/jest-pseudo-quarantine.git",
+  "repository": "https://github.com/ProductPlan/jest-quarantine.git",
   "author": "James Abercrombie <james@productplan.com>",
   "license": "MIT",
   "scripts": {
