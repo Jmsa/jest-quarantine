@@ -90,6 +90,15 @@ reporters: [
 ],
 ```
 
+An example of the quarantine reporter's output with all the options in use can be seen below. In this case:
+
+- we have the `"default"` jest reporter on which tells us that 1 suite, with 10 tests, of which 8 passed, and 2 were "todos"
+- below that default output we get:
+  - a quarantined count, which was 2 and since it uses "todo" internally is the reason those counts exist
+  - a list of the file that was run, the test name in it that was quarantined, and the result of attempting to run it
+
+<img src="quarantine output example.jpg" width="700" />
+
 ## Reporter options
 
 | Option     | Type    | Default | Description                                                                     |
