@@ -132,16 +132,29 @@ This could be added in at any point, especially if someone has a strong need and
 
 **Jest doesn't expose suite names**
 
-Because of this the store test names are only those that are passed to `quarantine` - which means the output for a given file might not be very helpful if you have tests like these:
+Because of this the stored test names are only those that are passed directly to `quarantine` and doesn't include the suite bane - which means the output for a given file will be harder to parse if you don't have unique test names. For example:
 
 ```javascript
-describe("suite a", () => {
-  it("does something", () => {});
-});
+// some-spec.js
+describe("Calendar", () => {
+  describe("with option A on", () => {
+    quarantine("does something", () => ...);
+  });
 
-describe("suite b", () => {
-  it("does something", () => {});
+  describe("with option A off", () => {
+    quarantine("does something", () => ...);
+  });
 });
+```
+
+which would result in output like this:
+
+```
+Quarantined: 2 total
+  some-spec.js
+  --> does something - passes: false
+  some-spec.js
+  --> does something - passes: false
 ```
 
 # Contributing
