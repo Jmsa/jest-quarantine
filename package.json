@@ -1,10 +1,20 @@
 {
   "name": "jest-quarantine",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "repository": "https://github.com/ProductPlan/jest-quarantine.git",
   "author": "James Abercrombie <james@productplan.com>",
   "license": "MIT",
+  "keywords": [
+    "jest",
+    "quarantine"
+  ],
+  "files": [
+    "README.md",
+    "LICENSE.txt",
+    "index.js",
+    "reporter.js"
+  ],
   "scripts": {
     "test": "jest --no-cache --verbose",
     "release": "standard-version"
