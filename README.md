@@ -81,12 +81,12 @@ import { setupQuarantine } from "jest-quarantine";
 setupQuarantine();
 ```
 
-Then hook up the `reporter` in the jest config if you want to surface the results locally (not required, just helpful). See the reporter details below configuration details.
+Then hook up the `reporter` in the jest config if you want to surface the results locally (not required, just helpful). See the reporter details below for a basic configuration.
 
 ```json
 reporters: [
     "default",
-    ["jest-pseudo-quarantine/reporter.js", { enabled: true, showTests: true, enforceExpiration: true }],
+    ["jest-pseudo-quarantine/reporter.js", { enabled: true, showTests: true }],
 ],
 ```
 
