@@ -151,4 +151,5 @@ module.exports = {
   saveResults,
   setupQuarantine,
   tearDownQuarantine,
+  ensureDirectoryExistence,
 };

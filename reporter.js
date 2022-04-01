@@ -1,6 +1,7 @@
 // This reporter aims to make it easier to be informed about test which have been quarantined
 const path = require("path");
 const cwd = process.cwd();
+const { ensureDirectoryExistence } = require("./index");
 
 class QuarantineReporter {
   constructor(globalConfig, options) {
@@ -72,10 +73,9 @@ const combineLogs = async (files) => {
   }
 
   // Save the combined results
-  fs.writeFileSync(
-    path.join(cwd, "quarantined-tests", "combined-results.log"),
-    JSON.stringify(quarantined, null, 4)
-  );
+  const filePath = path.join(cwd, "quarantined-tests", "combined-results.log");
+  ensureDirectoryExistence(filePath);
+  fs.writeFileSync(filePath, JSON.stringify(quarantined, null, 4));
 
   return quarantined;
 };
