@@ -1,11 +1,11 @@
 const fs = require("fs");
 const path = require("path");
 const cwd = process.cwd();
-const { differenceInDays, isMatch, parseISO, format } = require("date-fns");
+const { isMatch, differenceInCalendarDays } = require("date-fns");
 
 // Check to see if quarantine has expired between the current run and the date provided
 const hasQuarantineExpired = (runDate, expirationDate) => {
-  const diff = differenceInDays(new Date(runDate), new Date(expirationDate));
+  const diff = differenceInCalendarDays(runDate, new Date(expirationDate));
   return diff >= 0;
 };
 
