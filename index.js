@@ -46,7 +46,6 @@ function quarantine(name, expirationOrTest, fn = null) {
     // If it doesn't then replace it with a todo so it's still tracked without needing to write a custom reporter
     passes = false;
 
-    // TODO: circle back here - is it better to just not call "todo" at all and let the test disappear from counts??
     if (
       expirationOrTest !== null &&
       hasQuarantineExpired(now, expirationOrTest)
