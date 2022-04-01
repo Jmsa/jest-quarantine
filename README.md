@@ -122,6 +122,34 @@ Multiple files are created while saving results:
 - `quarantined-tests/test/file/path/and/name.log` = used to store quarantine results for a single file
 - `quarantined-tests/combined-results.log` = used to store all of the results combined and should be added to your `.gitignore`
 
+Regardless of whether you are looking at the logs for an individual file or the combined results they both follow the same format and contain an array of objects with the following properties:
+
+| Property | Type    | Description                                                   |
+| -------- | ------- | ------------------------------------------------------------- |
+| name     | string  | The test name passed to `quarantine`                          |
+| passes   | boolean | Whether or not the supplied function's assertions passed      |
+| testPath | string  | The relative path to the log file where the test can be found |
+| date     | string  | The date/time when the test was run                           |
+
+For example:
+
+```json
+[
+  {
+    "name": "some test",
+    "passes": false,
+    "testPath": "spec/javascripts/a/folder/spec.js",
+    "date": "2022-01-30T19:20:40.950Z"
+  },
+  {
+    "name": "another test",
+    "passes": true,
+    "testPath": "spec/javascripts/a/folder/elsewhere/spec.js",
+    "date": "2022-01-30T19:20:47.436Z"
+  }
+]
+```
+
 ---
 
 ## Caveats
