@@ -181,7 +181,7 @@ describe("quarantine", () => {
     ]);
   });
 
-  it("merges new quarantine results with old ones", () => {
+  it("does not merge new quarantine results with old ones", () => {
     global.quarantineResults = [
       {
         name: "a different test",
@@ -202,18 +202,40 @@ describe("quarantine", () => {
     );
     expect(results).toEqual([
       {
-        name: "a different test",
+        name: "a test that fails",
+        passes: false,
+        testPath: "index.test.js",
+        date: "2020-01-20T00:00:00.000Z",
+      },
+    ]);
+  });
+  it("removes stale logs if no quarantined results were encountered", () => {
+    global.quarantineResults = [
+      {
+        name: "a stale test",
         passes: false,
         testPath: "index.test.js",
         date: "2020-01-01T00:00:00.000Z",
       },
+    ];
+    saveResults();
+    const fs = require("fs");
+    const initialResults = JSON.parse(
+      fs.readFileSync("./quarantined-tests/index.test.log")
+    );
+    expect(initialResults).toEqual([
       {
-        date: "2020-01-20T00:00:00.000Z",
-        name: "a test that fails",
+        name: "a stale test",
         passes: false,
         testPath: "index.test.js",
+        date: "2020-01-01T00:00:00.000Z",
       },
     ]);
+
+    global.quarantineResults = [];
+    saveResults();
+    const fileExists = fs.existsSync("./quarantined-tests/index.test.log");
+    expect(fileExists).toBe(false);
   });
   it("throws an error if trying to pass a number instead of a date", () => {
     expect(() =>
