@@ -72,38 +72,25 @@ function quarantine(name, expirationOrTest, fn = null) {
 // Save quarantined test output
 const saveResults = () => {
   const { quarantineResults } = global;
-  if (quarantineResults && quarantineResults.length > 0) {
-    let finalResults = [];
 
-    // Grab details about the test file and check to see if there were any other results for this file
-    const currentSpec = expect.getState();
-    const { name, dir } = path.parse(currentSpec?.testPath);
+  // Grab details about the test file and build the log path
+  const currentSpec = expect.getState();
+  const { name, dir } = path.parse(currentSpec?.testPath);
+  const testDir = dir.replace(cwd, "");
+  const filePath = path.join(cwd, "quarantined-tests", testDir, `${name}.log`);
+
+  // If there are results save them - replacing the old logs
+  if (quarantineResults && quarantineResults.length > 0) {
     if (!fs.existsSync("./quarantined-tests/"))
       fs.mkdirSync("./quarantined-tests/");
-    const testDir = dir.replace(cwd, "");
-    const filePath = path.join(
-      cwd,
-      "quarantined-tests",
-      testDir,
-      `${name}.log`
-    );
-
-    // If there were previous results concat the new ones with them - preferring to keep the older cases of the same test
-    if (fs.existsSync(filePath)) {
-      const previousResults = JSON.parse(fs.readFileSync(filePath, "utf8"));
-      finalResults = previousResults.concat(
-        quarantineResults.filter(
-          ({ name }) => !previousResults.find((p) => p.name == name)
-        )
-      );
-    } else {
-      finalResults = quarantineResults;
-    }
 
     // Make sure the directory(ies) exist we need to have in order to save the log and then save it.
     ensureDirectoryExistence(filePath);
-    fs.writeFileSync(filePath, JSON.stringify(finalResults, null, 4));
+    fs.writeFileSync(filePath, JSON.stringify(quarantineResults, null, 4));
     global.quarantineResults = [];
+  } else {
+    // If don't have new results but do already have a log file then remove it because it's stale
+    if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
   }
 };
 
