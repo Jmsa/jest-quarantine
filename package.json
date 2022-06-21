@@ -55,7 +55,6 @@
     "jest": "^27.5.1",
     "lint-staged": "10.5.3",
     "mock-fs": "^5.1.2",
-    "node-fetch": "2.6.1",
     "standard-version": "9.5.0"
   }
 }
