@@ -51,10 +51,10 @@
     "eslint": "7.32.0",
     "husky": "4.3.5",
     "jest-extended": "^2.1.0",
-    "jest-watch-typeahead": "^1.0.0",
+    "jest-watch-typeahead": "^1.1.0",
     "jest": "^27.5.1",
     "lint-staged": "10.5.3",
-    "mock-fs": "^5.1.2",
+    "mock-fs": "^5.4.0",
     "standard-version": "9.5.0"
   }
 }
